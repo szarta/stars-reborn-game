@@ -28,7 +28,7 @@ distributable game images and is where bugs and feature requests should be filed
 | `stars-reborn-game` *(this repo)* | Primary release repo — packaging, releases, issue tracker |
 | [`stars-reborn-engine`](https://github.com/szarta/stars-reborn-engine) | Rust game engine — HTTP API, turn processing, authoritative data model |
 | [`stars-reborn-ui`](https://github.com/szarta/stars-reborn-ui) | Python/PySide6 game client — rendering, player input, local game management |
-| `stars-reborn-schemas` | JSON schemas defining the engine/UI HTTP contract |
+| [`stars-reborn-schemas`](https://github.com/szarta/stars-reborn-schemas) | JSON schemas defining the engine/UI HTTP contract |
 | [`stars-reborn-design`](https://github.com/szarta/stars-reborn-design) | Game mechanics documentation, research notes, open questions |
 
 ### Component Architecture
@@ -54,9 +54,8 @@ This repo pins specific versions of each component via git submodules:
 ```
 engine/   →  stars-reborn-engine  (Rust)
 ui/       →  stars-reborn-ui      (Python/PySide6)
+schemas/  →  stars-reborn-schemas (JSON)
 ```
-
-`schemas/` will be added as a submodule once `stars-reborn-schemas` has its own remote.
 
 ---
 
