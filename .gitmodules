@@ -4,3 +4,6 @@
 [submodule "ui"]
 	path = ui
 	url = git@github.com:szarta/stars-reborn-ui.git
+[submodule "schemas"]
+	path = schemas
+	url = git@github.com:szarta/stars-reborn-schemas.git
