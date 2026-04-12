@@ -55,6 +55,7 @@ This repo pins specific versions of each component via git submodules:
 engine/   →  stars-reborn-engine  (Rust)
 ui/       →  stars-reborn-ui      (Python/PySide6)
 schemas/  →  stars-reborn-schemas (JSON)
+design/   →  stars-reborn-design  (docs)
 ```
 
 ---
@@ -129,7 +130,11 @@ and your platform/version information.
 
 ## Credits
 
-See [CREDITS.markdown](CREDITS.markdown) for a full list of contributors and acknowledgments.
+Stars! was created by **Jeff Johnson and Jeff McBride** and published by Empire Interactive
+Entertainment (1996). This project is not endorsed by the original authors or publishers.
+
+For full credits, community research acknowledgements, prior clone attributions, and asset
+licenses, see [`design/docs/credits.rst`](design/docs/credits.rst).
 
 ## License
 

@@ -7,3 +7,6 @@
 [submodule "schemas"]
 	path = schemas
 	url = git@github.com:szarta/stars-reborn-schemas.git
+[submodule "design"]
+	path = design
+	url = git@github.com:szarta/stars-reborn-design.git
