@@ -1,0 +1,6 @@
+[submodule "engine"]
+	path = engine
+	url = git@github.com:szarta/stars-reborn-engine.git
+[submodule "ui"]
+	path = ui
+	url = git@github.com:szarta/stars-reborn-ui.git
