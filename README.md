@@ -81,23 +81,56 @@ If you already cloned without `--recurse-submodules`:
 git submodule update --init --recursive
 ```
 
-### Build the Engine
+### Run from Source
+
+Build the engine and install UI dependencies, then launch:
 
 ```bash
-cd engine
-cargo build --release
-```
-
-### Install UI Dependencies
-
-```bash
+cd engine && cargo build --release && cd ..
 pip install -r ui/requirements.txt
+python -m stars_reborn
 ```
 
-### Run
+---
+
+## Building the AppImage (Linux)
+
+The AppImage bundles the engine binary and the Python UI into a single self-contained executable.
+Build tasks are managed with [invoke](https://www.pyinvoke.org/).
+
+### Additional Prerequisites
+
+- `appimage-builder` 1.1+ — [installation guide](https://appimage-builder.readthedocs.io/en/latest/intro/install.html)
+
+### Install Build Dependencies
 
 ```bash
-python -m stars_reborn
+pip install -r requirements.txt
+```
+
+### Build
+
+```bash
+invoke build
+```
+
+This runs three steps in order:
+
+| Step | Command | What it does |
+|------|---------|--------------|
+| 1 | `invoke build-engine` | `cargo build --release` in `engine/` |
+| 2 | `invoke build-appdir` | Assembles `build/AppDir/` — Python venv, UI source, engine binary, launcher |
+| 3 | `invoke build-appimage` | Writes `build/AppImageBuilder.yml` and runs `appimage-builder` |
+
+The finished image is written to `build/Stars_Reborn-<version>-x86_64.AppImage`.
+
+### Individual Steps
+
+```bash
+invoke build-engine     # compile stars-server only
+invoke build-appdir     # assemble AppDir only (requires built engine)
+invoke build-appimage   # produce AppImage only (requires assembled AppDir)
+invoke clean            # remove build/
 ```
 
 ---

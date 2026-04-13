@@ -1,0 +1,8 @@
+# stars-reborn-game — build tooling dependencies
+# Install with: pip install -r requirements.txt
+
+# Build task runner
+invoke>=2.2
+
+# Linux AppImage packaging
+appimage-builder>=1.1
