@@ -101,7 +101,9 @@ def build_appdir(c):
     # --- Python venv with UI deps ------------------------------------------
     venv_path = APPDIR / "usr" / "lib" / "stars-reborn" / "venv"
     if not (venv_path / "bin" / "python3").exists():
-        c.run(f"python3 -m venv {venv_path}")
+        # --copies ensures the interpreter is a real ELF binary inside AppDir,
+        # not a symlink back to the host system — appimage-builder requires this.
+        c.run(f"python3 -m venv --copies {venv_path}")
     c.run(f"{venv_path}/bin/pip install --quiet -r {UI_DIR}/requirements.txt")
     print(f"Python venv ready: {venv_path}")
 
@@ -303,7 +305,6 @@ AppDir:
 AppImage:
   arch: x86_64
   file_name: Stars_Reborn-{version}-x86_64.AppImage
-  update-information: guess
 """
     RECIPE.write_text(recipe)
     print(f"Recipe written: {RECIPE}")

@@ -133,6 +133,41 @@ invoke build-appimage   # produce AppImage only (requires assembled AppDir)
 invoke clean            # remove build/
 ```
 
+### Known Build Issues
+
+#### `packaging.version.InvalidVersion` during apt deploy
+
+**Affects:** `appimage-builder` 1.1.0 with `packaging` 22.0+
+
+`appimage-builder` uses the `packaging` library to compare apt package version strings.
+Ubuntu-style versions (e.g. `1.21.1ubuntu2`) are not valid PEP 440, but older versions of
+`packaging` accepted them via a `LegacyVersion` fallback that was removed in `packaging` 22.0.
+On any modern Python environment this causes a crash during the apt deploy step:
+
+```
+packaging.version.InvalidVersion: Invalid version: '1.21.1ubuntu2'
+```
+
+**Fix:** patch `appimage-builder`'s `package.py` to fall back to string comparison on invalid
+versions. Find the file in your environment:
+
+```bash
+python -c "import appimagebuilder.modules.deploy.apt.package as m; print(m.__file__)"
+```
+
+Edit the `__gt__` method:
+
+```python
+def __gt__(self, other):
+    if isinstance(other, Package):
+        try:
+            return version.parse(self.version) > version.parse(other.version)
+        except version.InvalidVersion:
+            return self.version > other.version
+```
+
+This issue has been reported upstream. If you are on `packaging` < 22 you will not encounter it.
+
 ---
 
 ## Releases
