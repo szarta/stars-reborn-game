@@ -116,3 +116,4 @@ reference/
 .pytest_cache/
 .coverage
 .coverage.*
+.todo-sqlite-cli
