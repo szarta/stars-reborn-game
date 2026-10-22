@@ -1,3 +1,7 @@
+> **Moved.** Stars Reborn is now developed in a single monorepo:
+> **https://github.com/szarta/stars-reborn** — this component lives under `packaging/`.
+> This repository is archived and read-only; its full history was preserved in the monorepo.
+
 # Stars Reborn
 
 Stars Reborn is a faithful open-source clone of [Stars!](https://en.wikipedia.org/wiki/Stars!),
